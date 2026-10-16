@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from investigate import investigate, analyze_recipient
 
-CASE = json.loads((ROOT / "data/case.json").read_text())
+CASE = json.loads((ROOT / "data/case.json").read_text(encoding="utf-8"))
 
 class InvestigationTests(unittest.TestCase):
     def test_expected_five_cases(self):
@@ -61,11 +61,11 @@ class InvestigationTests(unittest.TestCase):
         self.assertFalse(any("outage" in f["explanation"].lower() for f in investigate(CASE)["findings"]))
 
     def test_published_report_consistent(self):
-        saved = json.loads((ROOT / "data/findings.json").read_text())
+        saved = json.loads((ROOT / "data/findings.json").read_text(encoding="utf-8"))
         self.assertEqual(saved, investigate(CASE))
 
     def test_site_loads_generated_json(self):
-        html = (ROOT / "index.html").read_text()
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn("data/findings.json", html)
         self.assertNotIn("const rows=[", html)
 

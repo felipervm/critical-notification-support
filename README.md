@@ -1,5 +1,5 @@
 # Critical Notification Support
-### From customer report to actionable resolution
+### From customer report to a clear next action
 
 **An independent support engineering case study by Felipe Mattos**
 
@@ -52,6 +52,10 @@ Only binds to local loopback. Run `python src/build.py` to regenerate `data/find
 | C-05 | Provider marks delivered, recipient acknowledgement absent | Clarify the customer's definition of delivery |
 
 No path proves the Everbridge platform failed. A missing event is **unknown**, not automatically an outage, and no sample target is an actual SLA.
+
+## Executive walkthrough
+
+The landing page opens with the incomplete provider trace, then lets readers compare all five recipient paths, inspect individual events and view the original event JSON. The decision and supporting customer update, specialist handoff and checklist are available without reading the implementation. Typography is self-hosted; the interface uses vanilla HTML, CSS and JavaScript with no third-party runtime dependencies. See [presentation notes](docs/presentation.md).
 
 ## Evidence and safeguards
 The investigation derives classifications from timestamps and event types, checks sequence ordering, highlights contradictory evidence as **needs review**, and keeps the original fixture immutable. The page uses the generated findings, not hard-coded conclusions.
