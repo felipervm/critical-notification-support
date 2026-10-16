@@ -1,0 +1,112 @@
+{
+  "case_id": "SIM-1042",
+  "total_recipients": 5,
+  "findings": [
+    {
+      "recipient_id": "C-01",
+      "classification": "expected_behavior",
+      "explanation": "Confirmation preceded a suppressed follow-up",
+      "next_action": "Verify configured confirmation rule, then explain the contact-cycle behavior",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:01:00Z",
+          "type": "confirmed",
+          "channel": "sms"
+        },
+        {
+          "at": "2026-10-15T14:01:20Z",
+          "type": "followup_suppressed"
+        }
+      ]
+    },
+    {
+      "recipient_id": "C-02",
+      "classification": "configuration_review",
+      "explanation": "Contact path is invalid in the sample trace",
+      "next_action": "Ask an authorized administrator to validate the affected contact record",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:01:00Z",
+          "type": "invalid_contact",
+          "channel": "email"
+        }
+      ]
+    },
+    {
+      "recipient_id": "C-03",
+      "classification": "configuration_review",
+      "explanation": "Planned retry is beyond the fictional notification window",
+      "next_action": "Review permitted retry intervals and window duration with the administrator",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:07:00Z",
+          "type": "attempted",
+          "channel": "sms"
+        },
+        {
+          "at": "2026-10-15T14:12:00Z",
+          "type": "retry_planned",
+          "channel": "sms"
+        }
+      ]
+    },
+    {
+      "recipient_id": "C-04",
+      "classification": "evidence_gap",
+      "explanation": "Handoff recorded; final delivery outcome is unavailable in this trace",
+      "next_action": "Check provider receipt, scope, elapsed time and incident policy; escalate if impact warrants",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:01:00Z",
+          "type": "provider_handoff",
+          "channel": "sms"
+        },
+        {
+          "at": "2026-10-15T14:08:00Z",
+          "type": "receipt_checked",
+          "result": "not_available"
+        }
+      ]
+    },
+    {
+      "recipient_id": "C-05",
+      "classification": "customer_verification",
+      "explanation": "Provider marked delivered; human acknowledgement is not shown",
+      "next_action": "Clarify whether customer means transport status, device observation or explicit acknowledgement",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:02:00Z",
+          "type": "provider_delivered",
+          "channel": "sms"
+        },
+        {
+          "at": "2026-10-15T14:04:00Z",
+          "type": "ack_checked",
+          "result": "not_available"
+        }
+      ]
+    }
+  ],
+  "requires_followup": 1,
+  "disclaimer": "All findings are fictional. These are investigative prompts, not vendor diagnostics."
+}

@@ -1,0 +1,100 @@
+{
+  "case_id": "SIM-1042",
+  "scenario": "Fictional weather notification accepted; customer reports missing recipients.",
+  "request": {
+    "http_status": 202,
+    "received_at": "2026-10-15T14:00:00Z"
+  },
+  "window_end": "2026-10-15T14:10:00Z",
+  "recipients": [
+    {
+      "id": "C-01",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:01:00Z",
+          "type": "confirmed",
+          "channel": "sms"
+        },
+        {
+          "at": "2026-10-15T14:01:20Z",
+          "type": "followup_suppressed"
+        }
+      ]
+    },
+    {
+      "id": "C-02",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:01:00Z",
+          "type": "invalid_contact",
+          "channel": "email"
+        }
+      ]
+    },
+    {
+      "id": "C-03",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:07:00Z",
+          "type": "attempted",
+          "channel": "sms"
+        },
+        {
+          "at": "2026-10-15T14:12:00Z",
+          "type": "retry_planned",
+          "channel": "sms"
+        }
+      ]
+    },
+    {
+      "id": "C-04",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:01:00Z",
+          "type": "provider_handoff",
+          "channel": "sms"
+        },
+        {
+          "at": "2026-10-15T14:08:00Z",
+          "type": "receipt_checked",
+          "result": "not_available"
+        }
+      ]
+    },
+    {
+      "id": "C-05",
+      "events": [
+        {
+          "at": "2026-10-15T14:00:00Z",
+          "type": "accepted"
+        },
+        {
+          "at": "2026-10-15T14:02:00Z",
+          "type": "provider_delivered",
+          "channel": "sms"
+        },
+        {
+          "at": "2026-10-15T14:04:00Z",
+          "type": "ack_checked",
+          "result": "not_available"
+        }
+      ]
+    }
+  ]
+}
