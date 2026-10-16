@@ -16,7 +16,7 @@ A customer reports that an urgent notification was accepted by an API, but sever
 
 - A **local HTTP API simulator** with a dispatch endpoint and separate status/event endpoints. Requests can be reproduced without third-party dependencies.
 - A **deterministic evidence interpreter** that classifies event histories (rather than reading a prefilled diagnostic status).
-- A **generated JSON report and interactive static website** built from one source of truth.
+- A **generated JSON report and interactive static website** using the same published source of truth.
 - **Customer update, engineering escalation and knowledge-base guidance** intended to reduce repeated investigation.
 - **Automated tests** for cases, contradictory evidence, boundary timing, input handling and the published website payload.
 
@@ -40,7 +40,7 @@ curl http://127.0.0.1:8765/api/notifications/SIM-1042
 curl http://127.0.0.1:8765/api/notifications/SIM-1042/events/C-04
 ```
 
-Only binds to local loopback. Run `python src/build.py` to regenerate `data/findings.json` and `index.html`. The page is self-contained with embedded report data and opens directly as a file or through GitHub Pages.
+Only binds to local loopback. Run `python src/build.py` to regenerate `data/findings.json`. The website reads this generated JSON; from the repository root use `python -m http.server 8000` and open `http://127.0.0.1:8000`, or enable GitHub Pages for the `main` branch's root. Opening `index.html` directly via `file://` will not load the JSON in many browsers.
 
 ## What the five paths mean
 | Synthetic path | Observation | Action |
